@@ -151,14 +151,33 @@ st.markdown("""
 
 
 
-st.sidebar.write('Informacoes sobre datas de visitas.')
-botao_pdf = st.sidebar.button("Baixar")    
+
+#st.sidebar.write('Informacoes sobre datas de visitas.')
+#botao_pdf = st.sidebar.button("Baixar")    
+#if botao_pdf:
+#    webbrowser.open_new_tab("https://www.google.com")
+
+#st.sidebar.divider()
+
+#st.sidebar.write('Fotos e videos da sua propriedade')
+#botao_fotos = st.sidebar.button("Visualizar")    
+#if botao_fotos:
+#    webbrowser.open_new_tab("https://drive.google.com/drive/folders/1LetX9FOQ1ZSQJUd-tle4jpotKqDxwH_v?usp=sharingm")
+
+
+# Função para criar links clicáveis em HTML
+def abrir_link(url):
+    js = f"window.open('{url}')"  # Comando JavaScript para abrir uma nova aba
+    st.markdown(f'<script>{js}</script>', unsafe_allow_html=True)
+
+st.sidebar.write('Informações sobre datas de visitas.')
+botao_pdf = st.sidebar.button("Baixar")
 if botao_pdf:
-    webbrowser.open_new_tab("https://www.google.com")
+    abrir_link("https://www.google.com")
 
 st.sidebar.divider()
 
-st.sidebar.write('Fotos e videos da sua propriedade')
-botao_fotos = st.sidebar.button("Visualizar")    
+st.sidebar.write('Fotos e vídeos da sua propriedade')
+botao_fotos = st.sidebar.button("Visualizar")
 if botao_fotos:
-    webbrowser.open_new_tab("https://drive.google.com/drive/folders/1LetX9FOQ1ZSQJUd-tle4jpotKqDxwH_v?usp=sharingm")
+    abrir_link("https://drive.google.com/drive/folders/1LetX9Fgm")
