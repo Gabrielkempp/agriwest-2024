@@ -20,6 +20,5 @@ df_custo_23_24 = st.session_state['df_custo_23_24']
 df_custo_24_25 = st.session_state['df_custo_24_25']
 
 # Header
-st.markdown('# Propriedade Agriwest')
-st.markdown('## Visualização dos Mapas 🗺️🌱')
+st.markdown('# Visualização dos Mapas 🗺️🌱')
 st.markdown('')

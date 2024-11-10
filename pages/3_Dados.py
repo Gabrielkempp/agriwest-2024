@@ -22,8 +22,7 @@ df_lucro = st.session_state['df_lucro']
 
 
 # Header
-st.markdown('# Propriedade Agriwest')
-st.markdown('## Visualização dos dados 📈🌱')
+st.markdown('# Visualização dos dados 📈🌱')
 st.markdown('')
 st.divider()
 

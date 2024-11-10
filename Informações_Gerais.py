@@ -3,6 +3,7 @@ from pathlib import Path
 import streamlit as st
 import plotly_express as px
 from datetime import datetime
+import webbrowser
 
 # Definições iniciais da pagina
 st.set_page_config('Informações Gerais', '🌱', 'wide')
@@ -63,16 +64,20 @@ st.divider()
 # Resumo das Safras Anteriores
 st.markdown('### Resumo das Safras Anteriores')
 
+# Função para formatar valores em reais
+def formatar_reais(valor): 
+    return f"R$ {valor:,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")
+
 # safra 2022 - 2023 ----------------------------------------------
 st.markdown("<h4 style='color: #4CAF50;'>2022 - 2023</h4>", unsafe_allow_html=True)
 col8, col9, col10 = st.columns(3)
 col8.metric('Produção Total', df_lucro.loc[df_lucro['Safra'] == '2022/2023', 'Produtividade (sacas/hectare)'])
 
 custo_hec = df_lucro.loc[df_lucro['Safra'] == '2022/2023', 'Custo por Hectare (R$)'].values[0]
-col9.metric('Custo Total por Hectare', f"R$ {custo_hec:,.2f}".replace(",", "X").replace(".", ",").replace("X", "."))    
+col9.metric('Custo Total por Hectare', formatar_reais(custo_hec))    
 
-lucro_f = df_lucro.loc[df_lucro['Safra'] == '2022/2023', 'Lucro Líquido (R$) - Venda Física'].values[0]
-col10.metric('Lucro Fisico', f"R$ {lucro_f:,.2f}".replace(",", "X").replace(".", ",").replace("X", "."))    
+lucro_f = df_lucro.loc[df_lucro['Safra'] == '2022/2023', 'Lucro Liquido Venda Fisica'].values[0]
+col10.metric('Lucro Fisico', formatar_reais(lucro_f))    
 st.write(' ')
 st.write(' ')
 
@@ -82,21 +87,21 @@ col8, col9, col10 = st.columns(3)
 col8.metric('Produção Total', df_lucro.loc[df_lucro['Safra'] == '2023/2024', 'Produtividade (sacas/hectare)'])
 
 custo_hec = df_lucro.loc[df_lucro['Safra'] == '2023/2024', 'Custo por Hectare (R$)'].values[0]
-col9.metric('Custo Total por Hectare', f"R$ {custo_hec:,.2f}".replace(",", "X").replace(".", ",").replace("X", "."))  
+col9.metric('Custo Total por Hectare', formatar_reais(custo_hec))  
 
-lucro_f = df_lucro.loc[df_lucro['Safra'] == '2023/2024', 'Lucro Líquido (R$) - Venda Física'].values[0]
-col10.metric('Lucro Fisico', f"R$ {lucro_f:,.2f}".replace(",", "X").replace(".", ",").replace("X", "."))    
+lucro_f = df_lucro.loc[df_lucro['Safra'] == '2023/2024', 'Lucro Liquido Venda Fisica + B3'].values[0]
+col10.metric('Lucro Fisico + B3', formatar_reais(lucro_f))    
 st.write(' ')
 st.write(' ')
 
 # safra 2024 - 2025 - Atual ----------------------------------------------
 st.markdown("<h4 style='color: #4CAF50;'>2024 - 2025 - Atual</h4>", unsafe_allow_html=True)
 col8, col9, col10 = st.columns(3)
-col8.metric('Previsao de produção', df_lucro.loc[df_lucro['Safra'] == '2023/2024', 'Produtividade (sacas/hectare)'])
+col8.metric('Previsão de produção', df_lucro.loc[df_lucro['Safra'] == '2023/2024', 'Produtividade (sacas/hectare)'])
 custo_hec = df_lucro.loc[df_lucro['Safra'] == '2024/2025', 'Custo por Hectare (R$)'].values[0]
-col9.metric('Previsao de Custo por Hectare', f"R$ {custo_hec:,.2f}".replace(",", "X").replace(".", ",").replace("X", "."))    
-lucro_f = df_lucro.loc[df_lucro['Safra'] == '2024/2025', 'Lucro Líquido (R$) - Venda Física'].values[0]
-col10.metric('Lucro Fisico', f"R$ {lucro_f:,.2f}".replace(",", "X").replace(".", ",").replace("X", "."))    
+col9.metric('Previsão de Custo por Hectare', formatar_reais(custo_hec))    
+lucro_f = df_lucro.loc[df_lucro['Safra'] == '2024/2025', 'Lucro Liquido Venda Fisica + B3'].values[0]
+col10.metric('Previsão de Lucro - Físico + B3', formatar_reais(lucro_f))    
 st.divider()
 
 # Número Mensal de Visitas
@@ -144,3 +149,16 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
+
+
+st.sidebar.write('Informacoes sobre datas de visitas.')
+botao_pdf = st.sidebar.button("Baixar")    
+if botao_pdf:
+    webbrowser.open_new_tab("https://www.google.com")
+
+st.sidebar.divider()
+
+st.sidebar.write('Fotos e videos da sua propriedade')
+botao_fotos = st.sidebar.button("Visualizar")    
+if botao_fotos:
+    webbrowser.open_new_tab("https://drive.google.com/drive/folders/1LetX9FOQ1ZSQJUd-tle4jpotKqDxwH_v?usp=sharingm")
