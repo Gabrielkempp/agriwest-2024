@@ -3,7 +3,6 @@ from pathlib import Path
 import streamlit as st
 import plotly_express as px
 from datetime import datetime
-import webbrowser
 
 # Definições iniciais da pagina
 st.set_page_config('Informações Gerais', '🌱', 'wide')
@@ -149,22 +148,7 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-
-
-
-#st.sidebar.write('Informacoes sobre datas de visitas.')
-#botao_pdf = st.sidebar.button("Baixar")    
-#if botao_pdf:
-#    webbrowser.open_new_tab("https://www.google.com")
-
-#st.sidebar.divider()
-
-#st.sidebar.write('Fotos e videos da sua propriedade')
-#botao_fotos = st.sidebar.button("Visualizar")    
-#if botao_fotos:
-#    webbrowser.open_new_tab("https://drive.google.com/drive/folders/1LetX9FOQ1ZSQJUd-tle4jpotKqDxwH_v?usp=sharingm")
-
-
+# Exibe botoes na lateral
 st.sidebar.write('Informações sobre datas de visitas.')
 botao_pdf = st.sidebar.link_button("Baixar PDF", "https://www.google.com")
 
