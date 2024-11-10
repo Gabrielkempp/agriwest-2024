@@ -3,4 +3,3 @@ pathlib
 plotly
 datetime
 plotly_express
-webbrowser
