@@ -38,8 +38,13 @@ col1, col2, col3, col4 = st.columns(4)
 # Dados
 porcentagem = ((custo_hectare_24_25 - custo_hectare_23_24) / custo_hectare_23_24) * 100
 porcentagem = -porcentagem
+if porcentagem >= 0:
+    mensuracao = 'menor'
+else:
+    mensuracao = 'maior'
 
-col1.metric(label='Custo por Hectare', value=formatar_reais(custo_hectare_24_25), delta=f'{porcentagem:.2f}% Comparado a ultima safra')
+
+col1.metric(label='Custo por Hectare', value=formatar_reais(custo_hectare_24_25), delta=f'{porcentagem:.2f}% {mensuracao} comparado a ultima safra')
 
 
 col2.metric(label='Custo por Hectare na ultima Safra', value=formatar_reais(custo_hectare_23_24))
@@ -54,8 +59,22 @@ col4.write('Media feita com base nas safras 22/23 e 23/24')
 st.divider()
 
 st.markdown('## Divisão de custos por categoria')
+col5, col6, col7 = st.columns(3)
+
+col5.markdown("<h4 style='color: #4CAF50;'>24/25 - Atual</h4>", unsafe_allow_html=True)
 fig = px.pie(df_custo_24_25 , names=df_custo_24_25['Categorias'],values=df_custo_24_25['Partc. Custo'])
-st.plotly_chart(fig)
+col5.plotly_chart(fig)
+
+col6.markdown('### 23/24')
+fig = px.pie(df_custo_23_24 , names=df_custo_23_24['Categorias'],values=df_custo_23_24['Partc. Custo'])
+col6.plotly_chart(fig)
+
+col7.markdown('### 22/23')
+fig = px.pie(df_custo_22_23 , names=df_custo_22_23['Categorias'],values=df_custo_22_23['Partc. Custo'])
+col7.plotly_chart(fig)
+
+
+
 
 # Criar gráfico de barras
 fig = px.bar(
@@ -63,7 +82,7 @@ fig = px.bar(
     x='Safra', 
     y=['Lucro Liquido Venda Fisica', 'Lucro Liquido Venda Fisica + B3'],
     labels={'value': 'Lucro (R$)', 'variable': 'Tipo de Lucro'},
-    title='Comparativo Lucro Líquido (R$)',
+    title='',
     barmode='group'
 )
 
@@ -79,5 +98,6 @@ fig.update_layout(
     )
 )
 
+st.markdown('## Comparativo Lucro Líquido (R$)')
 # Exibir gráfico no Streamlit
 st.plotly_chart(fig)

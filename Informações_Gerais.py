@@ -70,7 +70,16 @@ def formatar_reais(valor):
 # safra 2022 - 2023 ----------------------------------------------
 st.markdown("<h4 style='color: #4CAF50;'>2022 - 2023</h4>", unsafe_allow_html=True)
 col8, col9, col10 = st.columns(3)
-col8.metric('Produção Total', df_lucro.loc[df_lucro['Safra'] == '2022/2023', 'Produtividade (sacas/hectare)'])
+
+filtro_safra = df_lucro[df_lucro['Safra'] == '2022/2023']
+produtividade = filtro_safra['Produtividade (sacas/hectare)'].values[0]
+area = filtro_safra['Área (hectares)'].values[0]
+producao_total = produtividade * area
+col8.metric('Produção Total', f'{producao_total} Sacas')
+col8.write(f'({produtividade} Por Hectare)')
+col8.write(' ')
+col8.write(' ')
+
 
 custo_hec = df_lucro.loc[df_lucro['Safra'] == '2022/2023', 'Custo por Hectare (R$)'].values[0]
 col9.metric('Custo Total por Hectare', formatar_reais(custo_hec))    
@@ -83,7 +92,17 @@ st.write(' ')
 # safra 2023 - 2024 ----------------------------------------------
 st.markdown("<h4 style='color: #4CAF50;'>2023 - 2024</h4>", unsafe_allow_html=True)
 col8, col9, col10 = st.columns(3)
-col8.metric('Produção Total', df_lucro.loc[df_lucro['Safra'] == '2023/2024', 'Produtividade (sacas/hectare)'])
+
+filtro_safra = df_lucro[df_lucro['Safra'] == '2023/2024']
+produtividade = filtro_safra['Produtividade (sacas/hectare)'].values[0]
+area = filtro_safra['Área (hectares)'].values[0]
+producao_total = produtividade * area
+col8.metric('Produção Total', f'{producao_total} Sacas')
+col8.write(f'({produtividade} Por Hectare)')
+col8.write(' ')
+col8.write(' ')
+
+
 
 custo_hec = df_lucro.loc[df_lucro['Safra'] == '2023/2024', 'Custo por Hectare (R$)'].values[0]
 col9.metric('Custo Total por Hectare', formatar_reais(custo_hec))  
@@ -96,15 +115,22 @@ st.write(' ')
 # safra 2024 - 2025 - Atual ----------------------------------------------
 st.markdown("<h4 style='color: #4CAF50;'>2024 - 2025 - Atual</h4>", unsafe_allow_html=True)
 col8, col9, col10 = st.columns(3)
-col8.metric('Previsão de produção', df_lucro.loc[df_lucro['Safra'] == '2023/2024', 'Produtividade (sacas/hectare)'])
+
+filtro_safra = df_lucro[df_lucro['Safra'] == '2024/2025']
+produtividade = filtro_safra['Produtividade (sacas/hectare)'].values[0]
+area = filtro_safra['Área (hectares)'].values[0]
+producao_total = produtividade * area
+col8.metric('Produção Total', f'{producao_total} Sacas')
+col8.write(f'({produtividade} Por Hectare)')
+col8.write(' ')
+col8.write(' ')
+
+
 custo_hec = df_lucro.loc[df_lucro['Safra'] == '2024/2025', 'Custo por Hectare (R$)'].values[0]
 col9.metric('Previsão de Custo por Hectare', formatar_reais(custo_hec))    
 lucro_f = df_lucro.loc[df_lucro['Safra'] == '2024/2025', 'Lucro Liquido Venda Fisica + B3'].values[0]
 col10.metric('Previsão de Lucro - Físico + B3', formatar_reais(lucro_f))    
 st.divider()
-
-# Número Mensal de Visitas
-st.markdown("### Número Mensal de Visitas:  15")
 
 # Histórico de Visitas
 st.markdown("#### 📅 **Histórico de Visitas**")
@@ -149,7 +175,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # Exibe botoes na lateral
-st.sidebar.write('Informações sobre datas de visitas.')
+st.sidebar.write('Atas de Visitas')
 botao_pdf = st.sidebar.link_button("Baixar PDF", "https://www.google.com")
 
 st.sidebar.divider()
