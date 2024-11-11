@@ -135,8 +135,10 @@ st.divider()
 # Histórico de Visitas
 st.markdown("#### 📅 **Histórico de Visitas**")
 
+col11, col12, col13, col14 = st.columns(4)
+
 # Ano 2022/2023
-st.markdown("""
+col11.markdown("""
 <div style="
     border: 2px solid #D3D3D3;
     padding: 10px;
@@ -149,7 +151,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # Ano 2023/2024
-st.markdown("""
+col12.markdown("""
 <div style="
     border: 2px solid #D3D3D3;
     padding: 10px;
@@ -162,7 +164,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # Ano 2024/2025
-st.markdown("""
+col13.markdown("""
 <div style="
     border: 2px solid #D3D3D3;
     padding: 10px;
