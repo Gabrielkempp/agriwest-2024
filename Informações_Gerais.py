@@ -59,7 +59,6 @@ st.markdown('### Data de Início do Projeto:    Setembro de 2024')
 st.markdown('### Status Atual da Safra:    Acompanhamento')
 st.divider()
 
-
 # Resumo das Safras Anteriores
 st.markdown('### Resumo das Safras Anteriores')
 
@@ -79,7 +78,6 @@ col8.metric('Produção Total', f'{producao_total} Sacas')
 col8.write(f'({produtividade} Por Hectare)')
 col8.write(' ')
 col8.write(' ')
-
 
 custo_hec = df_lucro.loc[df_lucro['Safra'] == '2022/2023', 'Custo por Hectare (R$)'].values[0]
 col9.metric('Custo Total por Hectare', formatar_reais(custo_hec))    
