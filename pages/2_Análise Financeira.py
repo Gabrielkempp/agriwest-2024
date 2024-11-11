@@ -5,7 +5,7 @@ import plotly_express as px
 import Informações_Gerais as IG
 
 # Definições iniciais da pagina
-st.set_page_config('Análise Financeira', '🪙    ', 'wide')
+st.set_page_config('Análise Financeira', '🪙', 'wide')
 
 # Carregando arquivo
 cur_dir = Path(__file__).parent.parent
@@ -44,17 +44,17 @@ else:
     mensuracao = 'Maior'
 
 
-col1.metric(label='Custo por Hectare', value=formatar_reais(custo_hectare_24_25), delta=f'{porcentagem:.2f}% {mensuracao} comparado a ultima safra')
+col1.metric(label='Custo por Hectare', value=formatar_reais(custo_hectare_24_25), delta=f'{porcentagem:.2f}% {mensuracao} comparado a última safra')
 
 
-col2.metric(label='Custo por Hectare na ultima Safra', value=formatar_reais(custo_hectare_23_24))
+col2.metric(label='Custo por Hectare na última Safra', value=formatar_reais(custo_hectare_23_24))
 
-col3.metric(label='Previsao de custo total', value=formatar_reais(custo_hectare_24_25 * 100))
-col3.write(f'Custo total da ultima Safra: {formatar_reais(custo_hectare_23_24 *100)}')
+col3.metric(label='Previsão de custo total', value=formatar_reais(custo_hectare_24_25 * 100))
+col3.write(f'Custo total da última Safra: {formatar_reais(custo_hectare_23_24 *100)}')
 
 media_custo = ((custo_hectare_22_23 + custo_hectare_23_24) / 2)
-col4.metric(label='Media de custo das ultimas Safras', value=formatar_reais(media_custo))
-col4.write('Media feita com base nas safras 22/23 e 23/24')
+col4.metric(label='Média de custo das últimas Safras', value=formatar_reais(media_custo))
+col4.write('Média feita com base nas safras 22/23 e 23/24')
 
 st.divider()
 

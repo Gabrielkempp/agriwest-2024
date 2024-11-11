@@ -5,7 +5,7 @@ import plotly_express as px
 import Informações_Gerais as IG
 
 # Definições iniciais da pagina
-st.set_page_config('Visualização dos Mapas', '🗺️', 'wide')
+st.set_page_config('Observações', '🪙', 'wide')
 
 # Carregando arquivo
 cur_dir = Path(__file__).parent.parent
@@ -20,7 +20,7 @@ df_custo_23_24 = st.session_state['df_custo_23_24']
 df_custo_24_25 = st.session_state['df_custo_24_25']
 
 # Header
-st.markdown('# Visualização dos Mapas 🗺️🌱')
+st.markdown('# Observações e Feedbacks 💭🌱')
 st.markdown('')
 
 st.markdown('### Em breve...')
