@@ -39,9 +39,9 @@ col1, col2, col3, col4 = st.columns(4)
 porcentagem = ((custo_hectare_24_25 - custo_hectare_23_24) / custo_hectare_23_24) * 100
 porcentagem = -porcentagem
 if porcentagem >= 0:
-    mensuracao = 'menor'
+    mensuracao = 'Menor'
 else:
-    mensuracao = 'maior'
+    mensuracao = 'Maior'
 
 
 col1.metric(label='Custo por Hectare', value=formatar_reais(custo_hectare_24_25), delta=f'{porcentagem:.2f}% {mensuracao} comparado a ultima safra')
