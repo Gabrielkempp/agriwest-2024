@@ -20,7 +20,6 @@ df_custo_23_24 = st.session_state['df_custo_23_24']
 df_custo_24_25 = st.session_state['df_custo_24_25']
 df_lucro = st.session_state['df_lucro']
 
-
 # Header
 st.markdown('# Visualização dos dados 📈🌱')
 st.markdown('')

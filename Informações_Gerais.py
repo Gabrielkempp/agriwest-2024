@@ -30,6 +30,32 @@ def carregar_dados_se_nao_existem():
         st.session_state['df_custo_24_25'] = df_custo_24_25
         st.session_state['df_lucro'] = df_lucro
 
+# Função para exibir os dados
+def exibir_informacoes_safra(df_lucro, safra, lucro_key):
+    st.markdown(f"<h4 style='color: #4CAF50;'>{safra}</h4>", unsafe_allow_html=True)
+    col8, col9, col10 = st.columns(3)
+
+    filtro_safra = df_lucro[df_lucro['Safra'] == safra]
+    produtividade = filtro_safra['Produtividade (sacas/hectare)'].values[0]
+    area = filtro_safra['Área (hectares)'].values[0]
+    producao_total = produtividade * area
+    col8.metric('Produção Total', f'{producao_total} Sacas')
+    col8.write(f'({produtividade} Por Hectare)')
+    col8.write(' ')
+    col8.write(' ')
+
+    custo_hec = filtro_safra['Custo por Hectare (R$)'].values[0]
+    col9.metric('Custo Total por Hectare', formatar_reais(custo_hec))    
+
+    lucro_f = filtro_safra[lucro_key].values[0]
+    col10.metric('Lucro', formatar_reais(lucro_f))    
+    st.write(' ')
+    st.write(' ')
+
+# Função para formatar valores em reais
+def formatar_reais(valor): 
+    return f"R$ {valor:,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")
+
 # Chamando a função para garantir que os dados estejam carregados
 carregar_dados_se_nao_existem()
 
@@ -62,72 +88,11 @@ st.divider()
 # Resumo das Safras Anteriores
 st.markdown('### Resumo das Safras Anteriores')
 
-# Função para formatar valores em reais
-def formatar_reais(valor): 
-    return f"R$ {valor:,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")
+# Chamar a função para cada safra
+exibir_informacoes_safra(df_lucro, '2022/2023', 'Lucro Liquido Venda Fisica')
+exibir_informacoes_safra(df_lucro, '2023/2024', 'Lucro Liquido Venda Fisica + B3')
+exibir_informacoes_safra(df_lucro, '2024/2025', 'Lucro Liquido Venda Fisica + B3')
 
-# safra 2022 - 2023 ----------------------------------------------
-st.markdown("<h4 style='color: #4CAF50;'>2022 - 2023</h4>", unsafe_allow_html=True)
-col8, col9, col10 = st.columns(3)
-
-filtro_safra = df_lucro[df_lucro['Safra'] == '2022/2023']
-produtividade = filtro_safra['Produtividade (sacas/hectare)'].values[0]
-area = filtro_safra['Área (hectares)'].values[0]
-producao_total = produtividade * area
-col8.metric('Produção Total', f'{producao_total} Sacas')
-col8.write(f'({produtividade} Por Hectare)')
-col8.write(' ')
-col8.write(' ')
-
-custo_hec = df_lucro.loc[df_lucro['Safra'] == '2022/2023', 'Custo por Hectare (R$)'].values[0]
-col9.metric('Custo Total por Hectare', formatar_reais(custo_hec))    
-
-lucro_f = df_lucro.loc[df_lucro['Safra'] == '2022/2023', 'Lucro Liquido Venda Fisica'].values[0]
-col10.metric('Lucro Fisico', formatar_reais(lucro_f))    
-st.write(' ')
-st.write(' ')
-
-# safra 2023 - 2024 ----------------------------------------------
-st.markdown("<h4 style='color: #4CAF50;'>2023 - 2024</h4>", unsafe_allow_html=True)
-col8, col9, col10 = st.columns(3)
-
-filtro_safra = df_lucro[df_lucro['Safra'] == '2023/2024']
-produtividade = filtro_safra['Produtividade (sacas/hectare)'].values[0]
-area = filtro_safra['Área (hectares)'].values[0]
-producao_total = produtividade * area
-col8.metric('Produção Total', f'{producao_total} Sacas')
-col8.write(f'({produtividade} Por Hectare)')
-col8.write(' ')
-col8.write(' ')
-
-
-
-custo_hec = df_lucro.loc[df_lucro['Safra'] == '2023/2024', 'Custo por Hectare (R$)'].values[0]
-col9.metric('Custo Total por Hectare', formatar_reais(custo_hec))  
-
-lucro_f = df_lucro.loc[df_lucro['Safra'] == '2023/2024', 'Lucro Liquido Venda Fisica + B3'].values[0]
-col10.metric('Lucro Fisico + B3', formatar_reais(lucro_f))    
-st.write(' ')
-st.write(' ')
-
-# safra 2024 - 2025 - Atual ----------------------------------------------
-st.markdown("<h4 style='color: #4CAF50;'>2024 - 2025 - Atual</h4>", unsafe_allow_html=True)
-col8, col9, col10 = st.columns(3)
-
-filtro_safra = df_lucro[df_lucro['Safra'] == '2024/2025']
-produtividade = filtro_safra['Produtividade (sacas/hectare)'].values[0]
-area = filtro_safra['Área (hectares)'].values[0]
-producao_total = produtividade * area
-col8.metric('Produção Total', f'{producao_total} Sacas')
-col8.write(f'({produtividade} Por Hectare)')
-col8.write(' ')
-col8.write(' ')
-
-
-custo_hec = df_lucro.loc[df_lucro['Safra'] == '2024/2025', 'Custo por Hectare (R$)'].values[0]
-col9.metric('Previsão de Custo por Hectare', formatar_reais(custo_hec))    
-lucro_f = df_lucro.loc[df_lucro['Safra'] == '2024/2025', 'Lucro Liquido Venda Fisica + B3'].values[0]
-col10.metric('Previsão de Lucro - Físico + B3', formatar_reais(lucro_f))    
 st.divider()
 
 # Histórico de Visitas
