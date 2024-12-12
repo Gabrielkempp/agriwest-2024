@@ -81,7 +81,7 @@ st.divider()
 
 # Dados sobre a safra
 st.markdown('### Cultura Principal:    SOJA')
-st.markdown('### Data de Início do Projeto:    Setembro de 2024')
+st.markdown('### Data de Início do Projeto (Atual):    Setembro de 2024')
 st.markdown('### Status Atual da Safra:    Acompanhamento')
 st.divider()
 
@@ -135,13 +135,13 @@ col13.markdown("""
     background-color: #ffffff00;
     margin-bottom: 10px;">
     <strong>Ano 2024/2025</strong><br>
-    Quantidade até o momento: 15
+    Quantidade até o momento: 22
 </div>
 """, unsafe_allow_html=True)
 
 # Exibe botoes na lateral
 st.sidebar.write('Atas de Visitas')
-botao_pdf = st.sidebar.link_button("Baixar PDF", "https://www.google.com")
+botao_pdf = st.sidebar.link_button("Baixar PDF", "https://drive.google.com/drive/folders/13L7NLnEwr-j2daMEhDhEYehw9jxVKIId?usp=drive_link")
 
 st.sidebar.divider()
 
