@@ -141,7 +141,7 @@ col13.markdown("""
 
 # Exibe botoes na lateral
 st.sidebar.write('Atas de Visitas')
-botao_pdf = st.sidebar.link_button("Baixar PDF", "https://drive.google.com/drive/folders/13L7NLnEwr-j2daMEhDhEYehw9jxVKIId?usp=drive_link")
+botao_pdf = st.sidebar.link_button("Visualizar", "https://drive.google.com/drive/folders/13L7NLnEwr-j2daMEhDhEYehw9jxVKIId?usp=drive_link")
 
 st.sidebar.divider()
 
